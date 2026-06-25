@@ -345,6 +345,8 @@ ADJ ──tap MAC TOG────────────► MAC (toggle, persis
 
 Flash both halves after any keymap change.
 
+This config pins ZMK to **v0.3** (`config/west.yml` and `.github/workflows/build.yml`) so GitHub Actions builds stay compatible with the `seeeduino_xiao_ble` board name.
+
 ---
 
 ## Bluetooth pairing
