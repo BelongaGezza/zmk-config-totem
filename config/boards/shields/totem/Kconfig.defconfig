@@ -1,0 +1,48 @@
+# Copyright (c) 2022 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+# ── Mode 2/3+: Left half is the BLE central ─────────────────────────────────
+
+if SHIELD_TOTEM_LEFT
+
+config ZMK_KEYBOARD_NAME
+    default "TOTEM"
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+endif
+
+# ── Mode 1: Dongle is the USB central ───────────────────────────────────────
+
+if SHIELD_TOTEM_DONGLE
+
+config ZMK_KEYBOARD_NAME
+    default "TOTEM"
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+# Two peripheral BLE connections (left + right halves) plus up to one host BLE
+# pairing = 3 total.  USB is the primary HID output for the dongle, but BLE
+# must remain enabled for peripheral communication.
+config BT_MAX_CONN
+    default 3
+
+config BT_MAX_PAIRED
+    default 3
+
+# Tell ZMK's split stack to wait for two peripherals before reporting ready.
+config ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS
+    default 2
+
+endif
+
+# ── All split roles need ZMK_SPLIT enabled ───────────────────────────────────
+
+if SHIELD_TOTEM_LEFT || SHIELD_TOTEM_RIGHT || SHIELD_TOTEM_DONGLE || SHIELD_TOTEM_LEFT_PERIPHERAL
+
+config ZMK_SPLIT
+    default y
+
+endif

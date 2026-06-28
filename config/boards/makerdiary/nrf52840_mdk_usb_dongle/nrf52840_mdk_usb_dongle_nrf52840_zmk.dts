@@ -1,0 +1,13 @@
+/*
+ * Copyright (c) 2026 The ZMK Contributors
+ * SPDX-License-Identifier: MIT
+ *
+ * ZMK DTS entry point for the Makerdiary nRF52840 MDK USB Dongle //zmk variant.
+ * Includes the full Zephyr upstream board DTS, which defines the correct LED
+ * GPIO assignments (P0.22 green, P0.23 red, P0.24 blue) and the fstab-stock
+ * flash partition layout (storage_partition at 0xcc000).
+ *
+ * No additional overlays are needed — the Zephyr base DTS is correct for ZMK use.
+ */
+
+#include <../boards/makerdiary/nrf52840_mdk_usb_dongle/nrf52840_mdk_usb_dongle.dts>

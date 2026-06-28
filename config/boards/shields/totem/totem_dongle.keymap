@@ -1,0 +1,7 @@
+/*
+ * totem_dongle.keymap
+ *
+ * The dongle is the split central and therefore holds the keymap.
+ * We simply include the shared keymap so both modes use identical bindings.
+ */
+#include "totem.keymap"

@@ -1,0 +1,16 @@
+# Copyright (c) 2022 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+# ── Mode 2/3+: left-as-central split ────────────────────────────────────────
+config SHIELD_TOTEM_LEFT
+    def_bool $(shields_list_contains,totem_left)
+
+config SHIELD_TOTEM_RIGHT
+    def_bool $(shields_list_contains,totem_right)
+
+# ── Mode 1: dongle-as-central split ─────────────────────────────────────────
+config SHIELD_TOTEM_DONGLE
+    def_bool $(shields_list_contains,totem_dongle)
+
+config SHIELD_TOTEM_LEFT_PERIPHERAL
+    def_bool $(shields_list_contains,totem_left_peripheral)

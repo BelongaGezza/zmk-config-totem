@@ -1,0 +1,9 @@
+# Copyright (c) 2026 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+# Selects ZMK_BOARD_COMPAT when building the //zmk variant, satisfying ZMK's
+# board compatibility requirement.  Symbol name must match Zephyr's upstream
+# BOARD_NRF52840_MDK_USB_DONGLE (boards/makerdiary/nrf52840_mdk_usb_dongle/Kconfig.nrf52840_mdk_usb_dongle).
+
+config BOARD_NRF52840_MDK_USB_DONGLE
+	select ZMK_BOARD_COMPAT if BOARD_NRF52840_MDK_USB_DONGLE_NRF52840_ZMK

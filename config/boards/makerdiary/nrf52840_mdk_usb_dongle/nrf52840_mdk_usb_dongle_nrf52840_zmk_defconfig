@@ -1,0 +1,29 @@
+# Copyright (c) 2026 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+#
+# ZMK defconfig for the Makerdiary nRF52840 MDK USB Dongle //zmk variant.
+# Mirrors nrf52840dongle_nrf52840_zmk_defconfig from zmkfirmware/zmk with
+# additions specific to Makerdiary hardware.
+
+# Core
+CONFIG_ARM_MPU=y
+CONFIG_HW_STACK_PROTECTION=y
+CONFIG_GPIO=y
+
+# HID transports — dongle outputs USB to host, BLE to keyboard halves
+CONFIG_ZMK_USB=y
+CONFIG_ZMK_BLE=y
+
+# USB remote wakeup: disabled to avoid conflict with nrfx USB driver implication
+CONFIG_USB_DEVICE_REMOTE_WAKEUP=n
+
+# Settings / bond storage (NVS at storage_partition = 0xcc000 per fstab-stock)
+CONFIG_MPU_ALLOW_FLASH_WRITE=y
+CONFIG_NVS=y
+CONFIG_SETTINGS_NVS=y
+CONFIG_FLASH=y
+CONFIG_FLASH_PAGE_LAYOUT=y
+CONFIG_FLASH_MAP=y
+
+# Generate UF2 output — Makerdiary MDK USB Dongle uses a UF2 bootloader
+CONFIG_BUILD_OUTPUT_UF2=y

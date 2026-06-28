@@ -1,0 +1,45 @@
+---
+# ═══════════════════════════════════════════════════════════════════════════════
+# TOTEM — ZMK build targets
+# ═══════════════════════════════════════════════════════════════════════════════
+#
+# MODE 2 / 3+  ──  Left half as Central, Bluetooth to host
+# ─────────────────────────────────────────────────────────
+#  Flash totem_left  → left  XIAO BLE
+#  Flash totem_right → right XIAO BLE
+#
+#  Switching hosts: use BT_NXT / BT_PRV / BT_CLR on the ADJ layer (hold NAV +
+#  SYM simultaneously to reach ADJ).  ZMK supports up to 5 paired hosts.
+#
+# MODE 1  ──  Dongle (USB) as Central, both halves as Peripherals
+# ────────────────────────────────────────────────────────────────
+#  Flash totem_dongle          → Makerdiary nRF52840 MDK USB Dongle
+#  Flash totem_left_peripheral → left  XIAO BLE
+#  Flash totem_right           → right XIAO BLE  (same binary as Mode 2)
+#
+# Board name notes (ZMK main / Zephyr 4.1):
+#   - XIAO BLE:  xiao_ble//zmk  (renamed from seeeduino_xiao_ble)
+#   - Dongle:    nrf52840_mdk_usb_dongle//zmk
+#                ZMK extension defined in config/boards/makerdiary/nrf52840_mdk_usb_dongle/
+#                board_root registered via zephyr/module.yml (ZMK_EXTRA_MODULES).
+#
+# ═══════════════════════════════════════════════════════════════════════════════
+
+include:
+  # ── Mode 2 / 3+: Left-as-Central (BT HID to host) ───────────────────────
+  - board: xiao_ble//zmk
+    shield: totem_left
+    snippet: studio-rpc-usb-uart
+    cmake-args: -DCONFIG_ZMK_STUDIO=y
+  - board: xiao_ble//zmk
+    shield: totem_right
+
+  # ── Mode 1: Dongle (USB HID to host), both halves peripheral ─────────────
+  - board: nrf52840_mdk_usb_dongle//zmk
+    shield: totem_dongle
+    snippet: studio-rpc-usb-uart
+    cmake-args: -DCONFIG_ZMK_STUDIO=y
+  - board: xiao_ble//zmk
+    shield: totem_left_peripheral
+  # Note: totem_right firmware is identical for both modes — one build above
+  #       covers it; no need for a separate totem_right_peripheral target.

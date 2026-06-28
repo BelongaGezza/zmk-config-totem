@@ -1,0 +1,22 @@
+/*
+ * Copyright (c) 2022 The ZMK Contributors
+ * SPDX-License-Identifier: MIT
+ *
+ * totem_left_peripheral — left half as a BLE peripheral.
+ *
+ * Used in Mode 1 (dongle mode) where the dongle is the central and both halves
+ * are peripherals.  GPIO wiring is identical to totem_left; the difference is
+ * purely in Kconfig (no ZMK_SPLIT_ROLE_CENTRAL).
+ */
+
+#include "totem.dtsi"
+
+&kscan0 {
+    col-gpios
+        = <&xiao_d 4 GPIO_ACTIVE_HIGH>
+        , <&xiao_d 5 GPIO_ACTIVE_HIGH>
+        , <&xiao_d 10 GPIO_ACTIVE_HIGH>
+        , <&xiao_d 9 GPIO_ACTIVE_HIGH>
+        , <&xiao_d 8 GPIO_ACTIVE_HIGH>
+        ;
+};

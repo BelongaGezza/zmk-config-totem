@@ -1,0 +1,15 @@
+manifest:
+  remotes:
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
+  projects:
+    - name: zmk
+      remote: zmkfirmware
+      # Updated from v0.3 to main — required for nrf52840_mdk_usb_dongle board
+      # support and the 3-board dongle split improvements. Main is rolling and
+      # may occasionally be unstable; pin to a specific commit hash if you need
+      # reproducible builds.
+      revision: main
+      import: app/west.yml
+  self:
+    path: config
